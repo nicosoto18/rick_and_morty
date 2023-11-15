@@ -1,6 +1,6 @@
 import Card from './Card';
 
-const Cards=({characters})=> {
+const Cards=({characters, onClose})=> {
    return(
  <div>
    {
@@ -14,17 +14,13 @@ const Cards=({characters})=> {
          gender={character.gender}
          origin={character.origin.name}
          image={character.image}
-         onClose={() => window.alert('Emulamos que se cierra la card')}
+         onClose={()=> onClose(character.id)}
          />
         ))
    }
-
-
  </div>
-
-   )
+  )
 }
-
 
 
 export default Cards
