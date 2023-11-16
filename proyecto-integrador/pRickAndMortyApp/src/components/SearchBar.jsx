@@ -10,7 +10,7 @@ const SearchBar=({onSearch})=> {
    
    return (
       <div>
-         <input type='search' onChange={handleChange} value={id}/>
+         <input type="text" onChange={handleChange} value={id}/>
          <button onClick={()=>onSearch(id)}>Agregar</button> 
        
      </div>

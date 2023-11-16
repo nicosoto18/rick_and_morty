@@ -3,6 +3,9 @@ import Nav from './components/Nav.jsx';
 import Cards from './components/Cards.jsx';
 import { useState } from 'react';
 import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
+import About from './components/about/About.jsx';
+import Detail from './components/detail/Detail.jsx';
 
 function App() {
 
@@ -36,10 +39,16 @@ const onSearch=(id)=> {
 //R
    return (
       <div className='App'>
-               
-         <Cards characters={characters} onClose={onClose}/>
-          <Nav onSearch={onSearch}/>
-      </div>
+
+             <Nav onSearch={onSearch}/>
+               <Routes>
+               < Route path='/Home' element={<Cards characters={characters} onClose={onClose}/>} />
+               < Route path='/About' element={<About/>} />
+               < Route path='/Detail/:id' element={<Detail/>} />
+            
+             </Routes>
+     
+      </div>  
    );
 }
 
