@@ -1,19 +1,37 @@
 import './App.css';
 import Nav from './components/Nav.jsx';
 import Cards from './components/Cards.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation,} from 'react-router-dom';
 import About from './components/about/About.jsx';
 import Detail from './components/detail/Detail.jsx';
+import NotFound from './components/notfound/NotFound.jsx';
+import Form from './components/form/Form.jsx'; 
 
 function App() {
 
-//e
+//HOOKS
 const [characters, setCharacters]=useState([]);
+const [acces, setAcces] = useState(false);
+const navigate = useNavigate();
+const location = useLocation()
+
+useEffect(() => {
+   !acces && navigate('/');
+}, [acces]);
+
+
+//V
+const EMAIL = "nicosoto18@hotmail.com"
+const PASSWORD = "1234567"
+
+
 
 //f
 const onSearch=(id)=> {
+
+  
 
       axios(`https://rickandmortyapi.com/api/character/${id}?`).then(
          ({ data }) => {
@@ -27,26 +45,37 @@ const onSearch=(id)=> {
          console.error('Error al buscar el personaje: ', error);
          window.alert('Error al buscar personaje. Por favor, verifica el ID e inténtalo de nuevo.');
       });
+      navigate("/Home")
    }
    
-//F
  const onClose=(id)=>{  
  const updatedCharacters= characters.filter((character)=>
  character.id!=id)
    setCharacters(updatedCharacters); 
 };
 
+const login = (userData)=>{
+if (userData.email===EMAIL && userData.password===PASSWORD)
+setAcces(true)
+navigate("/Home");
+}
+
 //R
    return (
       <div className='App'>
 
-             <Nav onSearch={onSearch}/>
+             {location.pathname!=="/" && <Nav onSearch={onSearch}/> }
+            
                <Routes>
+               < Route path='/' element={<Form login={login}/>} />
                < Route path='/Home' element={<Cards characters={characters} onClose={onClose}/>} />
                < Route path='/About' element={<About/>} />
                < Route path='/Detail/:id' element={<Detail/>} />
-            
-             </Routes>
+               < Route path='*' element={<NotFound/>} />
+
+               </Routes>
+
+               
      
       </div>  
    );

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const Detail=()=>{
     
-    const {id} = useParams();
+    const {id} = useParams(); //destractoring a id ya que me trae muchas cosas y no solo el id
     const [character,setCharacter] = useState({});
 
 
