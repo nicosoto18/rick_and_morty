@@ -1,5 +1,7 @@
 import { useState } from "react"; 
 import Validation from "../validation/Validation";
+import styles from './Form.module.css'
+
 
 const Form=(props)=>{
 
@@ -32,11 +34,13 @@ const handleChange = (event)=>{
 const handleSubmit=(event)=>{
     event.preventDefault();
     login(userData);
+    
 }
 
 
     return(
-        
+        <div className={styles.Formulario}>
+
           <form onSubmit={handleSubmit}>
           
           <label>Email: </label>
@@ -66,7 +70,7 @@ const handleSubmit=(event)=>{
            <button type="submit">Submit</button>
 
           </form>
-        
+        </div>
     )
 }
 

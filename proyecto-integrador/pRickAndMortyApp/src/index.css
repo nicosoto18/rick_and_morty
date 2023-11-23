@@ -1,3 +1,4 @@
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -29,7 +30,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url(https://www.xtrafondos.com/descargar.php?id=5441&resolucion=2560x1440);
+  background-attachment:fixed ;
+  background-size: cover;
+  
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -66,4 +72,5 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+  
 }

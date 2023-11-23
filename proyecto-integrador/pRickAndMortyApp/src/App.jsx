@@ -1,6 +1,6 @@
 import './App.css';
-import Nav from './components/Nav.jsx';
-import Cards from './components/Cards.jsx';
+import Nav from './components/nav/Nav.jsx';
+import Cards from './components/cards/Cards.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Routes, Route, useNavigate, useLocation,} from 'react-router-dom';
@@ -8,6 +8,9 @@ import About from './components/about/About.jsx';
 import Detail from './components/detail/Detail.jsx';
 import NotFound from './components/notfound/NotFound.jsx';
 import Form from './components/form/Form.jsx'; 
+import Favorites from './components/favorites/Favorites.jsx';
+import { useDispatch } from 'react-redux';
+import { removeFav } from './redux/actions.js';
 
 function App() {
 
@@ -16,6 +19,7 @@ const [characters, setCharacters]=useState([]);
 const [acces, setAcces] = useState(false);
 const navigate = useNavigate();
 const location = useLocation()
+const dispatch= useDispatch();
 
 useEffect(() => {
    !acces && navigate('/');
@@ -52,6 +56,7 @@ const onSearch=(id)=> {
  const updatedCharacters= characters.filter((character)=>
  character.id!=id)
    setCharacters(updatedCharacters); 
+    dispatch(removeFav(id));
 };
 
 const login = (userData)=>{
@@ -64,14 +69,16 @@ navigate("/Home");
    return (
       <div className='App'>
 
-             {location.pathname!=="/" && <Nav onSearch={onSearch}/> }
+             {location.pathname!=="/" && <Nav onSearch={onSearch} /> }
             
                <Routes>
                < Route path='/' element={<Form login={login}/>} />
                < Route path='/Home' element={<Cards characters={characters} onClose={onClose}/>} />
                < Route path='/About' element={<About/>} />
                < Route path='/Detail/:id' element={<Detail/>} />
+               < Route path='/favorites' element={<Favorites onClose={onClose}/>} />
                < Route path='*' element={<NotFound/>} />
+               
 
                </Routes>
 
