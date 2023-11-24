@@ -8,13 +8,13 @@ const Form=(props)=>{
  //CUIDADO CON ESTO A LA HORA DEL EXAMEN
 const login = props.login
 
-
 const [userData, setUserData] = useState({
     email: "",
     password: ""
 })
 
 const [errors, setErrors] = useState({});
+
 
 const handleChange = (event)=>{
     setUserData({
@@ -34,8 +34,19 @@ const handleChange = (event)=>{
 const handleSubmit=(event)=>{
     event.preventDefault();
     login(userData);
-    
+    setUserData({
+        email: "",
+        password: "" 
+    })
+
 }
+const handleClickInvitado=(event)=>{
+    event.preventDefault();
+    login({
+         email: "rickandmorty@hotmail.com",
+        password: "1234567" });   
+}
+
 
 
     return(
@@ -48,7 +59,7 @@ const handleSubmit=(event)=>{
            type="text"
            name="email"
            value={userData.email} 
-           onChange={handleChange}/> <br />
+           onChange={handleChange}/>
            {errors.e1? <p>{errors.e1}</p>: null}
            {errors.e2? <p>{errors.e2}</p>: null}
            {errors.e3? <p>{errors.e3}</p>: null}
@@ -64,10 +75,11 @@ const handleSubmit=(event)=>{
            {errors.p2? <p>{errors.p2}</p>: null}
            {errors.p3? <p>{errors.p3}</p>: null}
             
-            <br />
+            
      {/* puedo utilizar disable para esconder o deshabilitar el boton submit hasta que este todo en condiciones */}
      {/* el handleSubmit en vez de pasarselo al button se lo estoy pasando al form por recomendaciones del profe */}
-           <button type="submit">Submit</button>
+           <button type="submit">Submit</button>  
+            <button onClick={handleClickInvitado}>Ingresar como invitado</button>
 
           </form>
         </div>

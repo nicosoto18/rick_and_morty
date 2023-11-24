@@ -1,4 +1,4 @@
-import { ADDFAV, REMOVEFAV } from "./actiontypes";
+import { ADDFAV, REMOVEFAV,FILTERCARDS,ORDERCARS } from "./actiontypes";
 
 const addFav=(character)=>{
     return {
@@ -13,6 +13,21 @@ const removeFav=(id)=>{
     payload: id
    }
 }
+const filterCards =(gender)=>{
+     return{
+        type: FILTERCARDS,
+        payload: gender
+     }
 
-export {addFav,removeFav};
+}
+
+const orderCars=(order)=>{
+    return{
+        type: ORDERCARS,
+        payload:order
+    }
+
+}
+
+export {addFav,removeFav, filterCards, orderCars};
 

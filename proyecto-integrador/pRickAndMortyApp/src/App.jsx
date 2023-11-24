@@ -27,7 +27,7 @@ useEffect(() => {
 
 
 //V
-const EMAIL = "nicosoto18@hotmail.com"
+const EMAIL = "rickandmorty@hotmail.com"
 const PASSWORD = "1234567"
 
 
@@ -60,9 +60,12 @@ const onSearch=(id)=> {
 };
 
 const login = (userData)=>{
-if (userData.email===EMAIL && userData.password===PASSWORD)
+if (userData.email===EMAIL && userData.password===PASSWORD){
 setAcces(true)
-navigate("/Home");
+navigate("/Home");}
+else { 
+window.alert('Su email o contraseña es incorrecta!')
+};
 }
 
 //R

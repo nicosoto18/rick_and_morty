@@ -1,6 +1,15 @@
+.select{
+display:inline-block;
+background-color:wheat;
+height: 20px /*altura*/;
+color: black;
+
+}
+
 .Favorites{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;  
     }
+

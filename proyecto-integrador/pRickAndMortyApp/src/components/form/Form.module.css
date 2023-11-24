@@ -1,13 +1,34 @@
-.Formulario{
-
-   background-image: url(https://i.pinimg.com/originals/a0/fb/9e/a0fb9eba4b967007c898638cb1a1de46.jpg);
+.Formulario {
+  background-image: url(https://i.pinimg.com/originals/a0/fb/9e/a0fb9eba4b967007c898638cb1a1de46.jpg);
   background-size: cover;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 25px;
-    padding-top: 25px;
-    border-width: 3px;
-    border: 1px solid yellow;
-    border-radius: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  border-width: 3px;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-};
+.Formulario button {
+  display: block;
+  padding: 2px;
+  margin: 20px;
+  background-color:wheat;
+  color: black;
+  border: 1px solid yellow;
+  
+}
+
+.Formulario label {
+  display: block;
+  margin-bottom: 5px; 
+}
+
+.Formulario input{
+  border: 1px solid wheat;
+}
