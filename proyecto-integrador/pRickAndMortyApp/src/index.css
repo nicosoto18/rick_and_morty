@@ -1,18 +1,16 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+ 
 }
 
 a {
@@ -24,14 +22,13 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+html, body {
+  height: 100%;
+  max-height: 100vh;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
   background-image: url(https://www.xtrafondos.com/descargar.php?id=5441&resolucion=2560x1440);
-  background-attachment:fixed ;
+  background-attachment:fixed;
   background-size: cover;
   
 }
@@ -54,7 +51,8 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: wheat;
+  color: wheat;
 }
 button:focus,
 button:focus-visible {

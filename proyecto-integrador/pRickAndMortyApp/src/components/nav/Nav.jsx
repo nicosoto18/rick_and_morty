@@ -5,16 +5,15 @@ import style from "./Nav.module.css"
 
 const Nav = ({onSearch})=>{
     return(
-        <nav className={style.navegacion}>
-
-            <Link to="/About"> <button>About</button>  </Link> 
-            <Link to="/Home"> <button>Home</button>  </Link>
-           <Link to="/favorites"><button>Favorites</button></Link>
-               
-          
+      
+  <nav className={style.navegacion}>
             
-       <SearchBar onSearch={onSearch} />
-        </nav>
+        <Link to="/About" > <button>About</button>  </Link> 
+        <Link to="/Home"> <button>Home</button>  </Link>
+        <Link to="/favorites"><button>Favorites</button></Link>
+        <SearchBar onSearch={onSearch} />       
+                 
+ </nav>
     )
 }
 

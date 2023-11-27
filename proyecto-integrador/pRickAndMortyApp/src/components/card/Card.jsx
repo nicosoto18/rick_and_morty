@@ -42,15 +42,10 @@ const Card=(props)=>{
       }
 
         <button onClick={()=>props.onClose(props.id)}>X</button> 
-         <Link to={`/Detail/${props.id}`}>
-         <h2>Name: {props.name}</h2>
-         </Link>
-         <h3>Status: {props.status}</h3>
-         <h3>Species: {props.species}</h3>
-         <h3>Gender: {props.gender}</h3>
-         <h3>Origin: {props.origin}</h3>         
-          <img src={props.image} alt='imagen' />
          
+        <Link to={`/Detail/${props.id}`}> <h2>{props.name}</h2> </Link>
+          <img src={props.image} alt='imagen' />
+          
 
         
                   

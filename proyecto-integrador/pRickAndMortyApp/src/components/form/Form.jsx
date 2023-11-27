@@ -50,10 +50,9 @@ const handleClickInvitado=(event)=>{
 
 
     return(
-        <div className={styles.Formulario}>
+        <div>
 
-          <form onSubmit={handleSubmit}>
-          
+          <form onSubmit={handleSubmit}className={styles.Formulario}>
           <label>Email: </label>
           <input
            type="text"
@@ -78,11 +77,12 @@ const handleClickInvitado=(event)=>{
             
      {/* puedo utilizar disable para esconder o deshabilitar el boton submit hasta que este todo en condiciones */}
      {/* el handleSubmit en vez de pasarselo al button se lo estoy pasando al form por recomendaciones del profe */}
-           <button type="submit">Submit</button>  
-            <button onClick={handleClickInvitado}>Ingresar como invitado</button>
-
+           <button type="submit" className={styles.iniciar}>Iniciar sesion</button>  
+            <button onClick={handleClickInvitado} className={styles.invitado}>Ingresar como invitado</button>
+             
           </form>
         </div>
+        
     )
 }
 

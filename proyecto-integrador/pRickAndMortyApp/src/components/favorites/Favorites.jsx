@@ -20,12 +20,12 @@ const handleFilter=(event)=>{
   return (
     <div className={style.Favorites}>
 
-      <select name="order" onChange={handleOrder} className={style.select}>
+      <select name="order" onChange={handleOrder} className={style.order}>
         <option value="A" >Ascendete</option> 
         <option value="D">Descendete</option>
       </select>
 
-      <select name="filter" onChange={handleFilter} className={style.select}>
+      <select name="filter" onChange={handleFilter} className={style.filter}>
         <option value="All">All</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>

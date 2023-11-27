@@ -1,10 +1,14 @@
-.navegacion{
-    
-     display: grid;
-     justify-items: center;
-    display: flex;
-   /*  justify-content: space-around;
-    align-items: flex-start;
-    align-content: flex-start;  */
-    
+.navegacion {
+     display: flex;
+    flex-direction: row;
+     justify-content: space-around;
+     align-items: flex-start; 
 }
+
+.navegacion button{
+    background-color: black;
+    border: solid wheat; 
+}
+
+
+
