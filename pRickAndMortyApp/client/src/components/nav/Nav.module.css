@@ -1,0 +1,14 @@
+.navegacion {
+     display: flex;
+    flex-direction: row;
+     justify-content: space-around;
+     align-items: flex-start; 
+}
+
+.navegacion button{
+    background-color: black;
+    border: solid wheat; 
+}
+
+
+
