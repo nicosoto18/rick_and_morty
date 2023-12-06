@@ -27,24 +27,23 @@ useEffect(() => {
 
 
 //f
-const onSearch=(id)=> {
-
-  // `https://rickandmortyapi.com/api/character/${id}?`  
-
-      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-         ({ data }) => {
-            if (data.name) {
-               setCharacters((oldChars) => [...oldChars, data]);
-            } else {
-               window.alert('¡No hay personajes con este ID!');
-            }
-         }
-      ).catch(error=>{
-         console.error('Error al buscar el personaje: ', error);
+const onSearch = async (id)=> {
+  try {
+     const {data} =  await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+      
+      if (data.name) {
+      setCharacters((oldChars) => [...oldChars, data]);
+      }else {
+      window.alert('¡No hay personajes con este ID!');
+      }
+         
+  }catch (error) {
+   console.error('Error al buscar el personaje: ', error);
          window.alert('Error al buscar personaje. Por favor, verifica el ID e inténtalo de nuevo.');
-      });
-      navigate("/Home")
-   }
+  }
+   
+    navigate("/Home")
+   };
    
  const onClose=(id)=>{  
  const updatedCharacters= characters.filter((character)=>
@@ -53,25 +52,28 @@ const onSearch=(id)=> {
     dispatch(removeFav(id));
 };
 
-const login=(userData)=>{
+const login = async (userData)=>{
+   
+   try {
    const {email, password } = userData;
    const URL = 'http://localhost:3001/rickandmorty/login/'; 
-   axios(URL + `?email=${email}&&password=${password}`)
-   .then(({data}) => {
-      const {acces} = data;
+   const response = await axios(URL + `?email=${email}&&password=${password}`)
+   const data = response.data
+   const {acces} = data;
+
       if(acces){
-         setAcces(data);
-         acces && navigate('/home');   
+       setAcces(data);
+       acces && navigate('/home');   
+      }else{
+       alert("credenciales incorrectas!")
       }
-      else{
-         alert("credenciales incorrectas!")
-      }
-   }
-   )
-  .catch((error) =>{
-   console.log("NO SE PUDO")
-  })
+   
+   }catch (error) {
+      console.log("NO SE PUDO")
+   } 
 }
+      
+   
 
 
 //R

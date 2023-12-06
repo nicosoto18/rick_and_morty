@@ -3,42 +3,38 @@ import axios from "axios"
 
 const addFav = (character) => {
     const endpoint = 'http://localhost:3001/rickandmorty/fav';
-    return (dispatch) => {
-        axios.post(endpoint, character)
-            .then(({ data }) => {
-                return dispatch({
-                    type: ADDFAV,  // Fixed typo here from 'rype' to 'type'
-                    payload: data
-                });
-            });
+  
+    return async (dispatch) => {
+      try {
+        const { data } = await axios.post(endpoint, character);
+        dispatch({
+          type: ADDFAV,
+          payload: data
+        });
+      } catch (error) {
+        console.error('Error al agregar a favoritos: ', error);
+        throw error; // Puedes manejar el error según tus necesidades y lanzarlo nuevamente si es necesario
+      }
     };
-};
-
+  };
+  
 const removeFav = (id)=>{
     const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id
-    return (dispatch)=>{
-    axios.delete(endpoint)
-    .then(
-        (({data}) => {
-            return dispatch({
-                type: REMOVEFAV,
-                payload: data
-            })
-        })
-    )}
+    
+    return async (dispatch)=>{
+    try {
+        const {data} = await axios.delete(endpoint)
+        return dispatch({
+        type: REMOVEFAV,
+        payload: data
+        });
+    }catch (error) {
+     console.log('error al eliminar de favoritos: ', error)
+    throw new Error(error.message)
+    }
+    };
 };
-
-
-
-
-
-
-// const removeFav=(id)=>{
-//    return {
-//     type: REMOVEFAV,
-//     payload: id
-//    }
-// }
+ 
 
 const filterCards =(gender)=>{
      return{
