@@ -26,12 +26,6 @@ useEffect(() => {
 }, [acces]);
 
 
-//V
-const EMAIL = "rickandmorty@hotmail.com"
-const PASSWORD = "1234567"
-
-
-
 //f
 const onSearch=(id)=> {
 
@@ -59,14 +53,26 @@ const onSearch=(id)=> {
     dispatch(removeFav(id));
 };
 
-const login = (userData)=>{
-if (userData.email===EMAIL && userData.password===PASSWORD){
-setAcces(true)
-navigate("/Home");}
-else { 
-window.alert('Su email o contraseña es incorrecta!')
-};
+const login=(userData)=>{
+   const {email, password } = userData;
+   const URL = 'http://localhost:3001/rickandmorty/login/'; 
+   axios(URL + `?email=${email}&&password=${password}`)
+   .then(({data}) => {
+      const {acces} = data;
+      if(acces){
+         setAcces(data);
+         acces && navigate('/home');   
+      }
+      else{
+         alert("credenciales incorrectas!")
+      }
+   }
+   )
+  .catch((error) =>{
+   console.log("NO SE PUDO")
+  })
 }
+
 
 //R
    return (

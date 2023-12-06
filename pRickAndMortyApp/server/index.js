@@ -1,39 +1,34 @@
-const http = require ("http") 
-const PORT = 3001
-const { stringify } = require("querystring");
-const getCharById = require("./controllers/getCharById")
+const express = require ("express")
+const morgan = require("morgan")
+const server = express()
+const PORT = 3001;
+const router = require("./routes/index") 
+
+//middleware para configurar los encabezados CORS, recordemos que esto nos da acceso dentro de todos los front
+server.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', '*');
+   res.header('Access-Control-Allow-Credentials', 'true');
+   res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+   );
+   res.header(
+      'Access-Control-Allow-Methods',
+      'GET, POST, OPTIONS, PUT, DELETE'
+   );
+   next();
+});
+
+server.use(express.json());
+server.use(morgan("dev"));
+
+server.use("/rickandmorty", router);  //cuando reciba rickandmorty barra algo el resto lo buscamos en router
+
+server.listen(PORT,()=>{
+   console.log("Server raised in port: " + PORT);
+});
 
 
-http.createServer((req, res)=>{
- res.setHeader('Access-Control-Allow-Origin', '*');  //esta linea le da acceso a cualquier front 
-  
-  if(req.url.includes("/rickandmorty/character")){
-    const id = req.url.split("/").pop(); //aca creando un nuevo elemento en un array cada vez que me encuentre con una / y luego me quedo con el ultimo (que sera el id)
-     getCharById(res,id);
-  } else{
-   return res
-    .writeHead(404, {"content-type" : "application/json"})
-    .end(JSON.stringify({message: "Wrong url"}));
-} 
-})
-.listen(PORT,"127.0.0.1",()=>(console.log(`Server listening on port ${PORT}`))
-);
-     
 
 
-
-
-   //  const character = characters.find(
-   //      char => char.id === Number(id) 
-   //   );
-   //   if(character){ 
-   //     return res
-   //      .writeHead(200, {"content-type": "application/json"})
-   //      .end(JSON.stringify(character));
-   //   } else{
-      
-   //      return res
-   //      .writeHead(404, {"content-type" : "application/json"})
-   //      .end(JSON.stringify({message: "character Not Found"}));
-   //   }
 

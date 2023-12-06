@@ -6,7 +6,7 @@ import style from "./Card.module.css"
 
 const Card=(props)=>{
 
-   const state= useSelector(state=>state.myFavorites)
+   
    const [isFav,setIsFav] = useState(false)
    const dispatch = useDispatch(); //function
   
@@ -21,14 +21,14 @@ const Card=(props)=>{
       }
    }
 
-
+ const myFavorites= useSelector(state=>state.myFavorites)
    useEffect(() => {
-      state.forEach((fav) => {
+      myFavorites.forEach((fav) => {
          if (fav.id === props.id) {
             setIsFav(true);
          }
       });
-   }, [state]);
+   }, [myFavorites]);
 
 
    

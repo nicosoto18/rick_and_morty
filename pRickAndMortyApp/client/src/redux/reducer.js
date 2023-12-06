@@ -1,5 +1,6 @@
 import { ADDFAV, REMOVEFAV, FILTERCARDS, ORDERCARS } from "./actiontypes";
 
+
 const initialState = {
   myFavorites: [],
   allCharacters: [],
@@ -10,17 +11,14 @@ const reducer = (state = initialState, action) => {
     case ADDFAV:
       return {
         ...state,
-        allCharacters: [...state.allCharacters, action.payload],
-        myFavorites: [...state.myFavorites, action.payload],
+        myFavorites: action.payload,
+        allCharacters: action.payload
       };
     case REMOVEFAV:
-      const newArray = state.allCharacters.filter(
-        (char) => char.id != action.payload
-      );
       return {
         ...state,
-        allCharacters: newArray,
-        myFavorites: newArray,
+        myFavorites: action.payload,
+        // allCharacters:action.payload
       };
     case FILTERCARDS:
       if (action.payload === "All") {
