@@ -20,7 +20,7 @@ server.use((req, res, next) => {
 });
 
 server.use(express.json());
-server.use(morgan("dev"));
+server.use(morgan("dev")); //ES UN MIDDLEWARE QUE RECIBE A LA REQUEST Y LUEGO LA LIBERA PARA Q SIGA SU CAMINO 
 
 server.use("/rickandmorty", router);  //cuando reciba rickandmorty barra algo el resto lo buscamos en router
 
@@ -28,7 +28,11 @@ server.listen(PORT,()=>{
    console.log("Server raised in port: " + PORT);
 });
 
-
+/*
+ENTONCES DECIMOS QUE LA REQUEST PRIMERO PASA POR: 
+1- MORGAN : QUE SE ENCARGA QUE LAS COSAS SE MUESTREN EN LA CONSOLA, LUEGO LO LIBERA
+2- ROUTER: SE ENCUENTRA CON ROUTER Y ROUTER LO DIRIGE A DONDE CORRESPONDA 
+*/
 
 
 
