@@ -3,6 +3,7 @@ const morgan = require("morgan")
 const server = express()
 const PORT = 3001;
 const router = require("./routes/index") 
+const {conn} = require("./src/DB_connection")
 
 //middleware para configurar los encabezados CORS, recordemos que esto nos da acceso dentro de todos los front
 server.use((req, res, next) => {
@@ -24,9 +25,16 @@ server.use(morgan("dev")); //ES UN MIDDLEWARE QUE RECIBE A LA REQUEST Y LUEGO LA
 
 server.use("/rickandmorty", router);  //cuando reciba rickandmorty barra algo el resto lo buscamos en router
 
-server.listen(PORT,()=>{
+try {
+   conn.sync({force:true})
+   server.listen(PORT,()=>{
    console.log("Server raised in port: " + PORT);
 });
+} 
+catch (error) {
+   console.log(error.message)
+};
+
 
 /*
 ENTONCES DECIMOS QUE LA REQUEST PRIMERO PASA POR: 
