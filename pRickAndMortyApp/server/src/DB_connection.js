@@ -15,13 +15,15 @@ const sequelize = new Sequelize(
 
 favoriteModel(sequelize);
 userModel(sequelize);
+//*sequelize = {models: {Favorite: Favorite, User: User}}
 
 // Ejercicio 06
 // ¡Relaciona tus modelos aquí abajo!
  const { User, Favorite } = sequelize.models;
  
- User.belongsToMany(Favorite, {through: "characterEpisode"});
- Favorite.belongsToMany(User, {through: "characterEpisode"});
+ 
+ User.belongsToMany(Favorite, {through: "user_favorite"});  //RELACION DE N A N 
+ Favorite.belongsToMany(User, {through: "user_favorite"});
 
 module.exports = {
    User,

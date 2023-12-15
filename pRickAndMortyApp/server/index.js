@@ -5,6 +5,8 @@ const PORT = 3001;
 const router = require("./routes/index") 
 const {conn} = require("./src/DB_connection")
 
+
+
 //middleware para configurar los encabezados CORS, recordemos que esto nos da acceso dentro de todos los front
 server.use((req, res, next) => {
    res.header('Access-Control-Allow-Origin', '*');
@@ -26,7 +28,7 @@ server.use(morgan("dev")); //ES UN MIDDLEWARE QUE RECIBE A LA REQUEST Y LUEGO LA
 server.use("/rickandmorty", router);  //cuando reciba rickandmorty barra algo el resto lo buscamos en router
 
 try {
-   conn.sync({force:true})
+   conn.sync({force:false})          //esto devuelve una promesa, asi que tambien se puede hacer con then
    server.listen(PORT,()=>{
    console.log("Server raised in port: " + PORT);
 });
@@ -44,3 +46,4 @@ ENTONCES DECIMOS QUE LA REQUEST PRIMERO PASA POR:
 
 
 
+//minuto 52:21

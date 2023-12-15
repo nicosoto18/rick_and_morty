@@ -59,11 +59,11 @@ const login = async (userData)=>{
    const URL = 'http://localhost:3001/rickandmorty/login/'; 
    const response = await axios(URL + `?email=${email}&&password=${password}`)
    const data = response.data
-   const {acces} = data;
+   const {access} = data;
 
-      if(acces){
+      if(access){
        setAcces(data);
-       acces && navigate('/home');   
+       access && navigate('/home');   
       }else{
        alert("credenciales incorrectas!")
       }

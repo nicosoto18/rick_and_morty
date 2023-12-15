@@ -4,13 +4,16 @@ module.exports = (sequelize) => {
    sequelize.define('User', {
       id: {
          type: DataTypes.INTEGER,
-         allowNull:false,
-         primaryKey:true
+         allowNull:false,    //que no sea null
+         primaryKey:true,
+         autoIncrement: true,
       },
       email: {
          type: DataTypes.STRING,
          allowNull: false,
-         isEmail: true,
+         validate: {
+            isEmail: true
+         }
       },
       password : {
          type: DataTypes.STRING,
